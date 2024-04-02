@@ -1,0 +1,60 @@
+{{> Header }}
+
+<h1 id="title" class="{{#if props.completed}}completed{{/if}}">{{ todo.title }}</h1>
+<h2 id="description">{{ todo.description }}</h2>
+<h3 status="{{ todo.status }}" id="status">Status: {{ todo.status }}</h3>
+
+<div>
+    <form id="update-todo-form" method="GET" action="/todos/{{ todo.id }}/edit">
+        <button id="edit-todo-form-submit-button">Edit</button>
+    </form>
+
+    <form id="complete-todo-form" method="POST" action="/todos/{{ todo.id }}/complete">
+        <input type="hidden" name="method" value="PUT">
+        <button>Complete</button>
+    </form>
+
+    <form id="delete-todo-form" method="POST" action="/todos/{{ todo.id }}">
+        <input type="hidden" name="method" value="DELETE"> 
+        <button>Delete</button>
+    </form>
+</div>
+<br/>
+
+<div>
+    <h3>SubTodos:</h3>
+    <ul>
+        <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each subtodos }}
+                        <tr subtodo-id="{{ props.id }}" status="{{ props.status }}">
+                            <td class="{{#if props.completed}}completed{{else}}incomplete{{/if}}">{{ props.title }}</td>
+                            <td> {{ props.status }}</td>
+                            <td>
+                                <form id="complete-subtodo-form" method="POST" action="/todos/{{ props.todoId }}/subtodos/{{ props.id }}/complete">
+                                    <input type="hidden" name="method" value="PUT">
+                                    <button>Complete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+        </table>
+    </ul>
+</div>
+
+<br/>
+
+<form id="new-subtodo-form" method="POST" action="/todos/{{ todo.id }}/subtodos">
+    <label for="subtodo-title">New SubTodo:</label>
+    <input type="text" id="subtodo-title" name="title" />
+    <button>Add</button>
+</form>
+
+{{> Footer }}

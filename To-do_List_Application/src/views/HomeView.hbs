@@ -1,0 +1,27 @@
+{{> Header }}
+
+<section class="hero">
+    {{!-- <img src="https://images.pexels.com/photos/3243/pen-calendar-to-do-checklist.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Tasks organized on whiteboard" class="hero-image"> --}}
+    <h1>Elsana`s Web Todo Application</h1>
+    <p>{{ message }}</p>
+    <a href="{{ path 'todos/new' }}" class="call-to-action-button">Get Started!</a>
+</section>
+
+<section class="features">
+    <h2>Key Features</h2>
+    <div class="feature-cards">
+		{{#each features}}
+		<div class="feature-card">
+            <h3>{{ title }}</h3>
+            <p>{{ description }}</p>
+        </div>
+		{{/each}}
+    </div>
+</section>
+
+<section class="testimonial">
+    <blockquote>"This app has changed the way I manage my tasks!" - John Abbott</blockquote>
+</section>
+
+
+{{> Footer }}
