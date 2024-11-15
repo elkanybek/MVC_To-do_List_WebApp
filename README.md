@@ -1,4 +1,5 @@
 # MVC To-do List Application
+> This project was developed for Web Programming 2 course at John Abbott College.
 
 **Project Period:** January 2024 – April 2024
 
